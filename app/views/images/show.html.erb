@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<div class="well">
+    <p>
+      <img src="/<%=@image.source%>" />
+    </p>
+
+    <p>
+      <b>Username:</b>
+      <%= @image.username %>
+    </p>
+
+
+    <%= link_to 'Edit', edit_image_path(@image) %> |
+    <%= link_to 'Back', images_path %>
+</div>
+
+
+
+
