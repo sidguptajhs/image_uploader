@@ -15,7 +15,7 @@ class Image < ActiveRecord::Base
       self.background_color = 'white'
     end
     img.resize_to_fit!(320, 240)
-    target.composite(img, Magick::CenterGravity, Magick::CopyCompositeOp).write("#{Rails.root}/public/small-#{name}.png")
+    target.composite(img, Magick::CenterGravity, Magick::CopyCompositeOp).write("#{RAILS_ROOT}/public/small-#{name}.png")
     write_attribute(:source,name+".png")
   end
 end
