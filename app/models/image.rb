@@ -7,10 +7,10 @@ class Image < ActiveRecord::Base
     name=read_attribute(:username)
     data = self.read_attribute(:source)
     image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
-    File.open("#{Rails.root}/public/#{name}.png", 'wb') do |f|
+    File.open("#{RAILS_ROOT}/public/#{name}.png", 'wb') do |f|
       f.write image_data
     end
-    img = Magick::Image.read("#{Rails.root}/public/#{name}.png").first
+    img = Magick::Image.read("#{RAILS_ROOT}/public/#{name}.png").first
     target = Magick::Image.new(320, 240) do
       self.background_color = 'white'
     end
