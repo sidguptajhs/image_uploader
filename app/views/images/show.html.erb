@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div class="well">
     <p>
-      <img src="/<%=@image.source%>" />
+      <%= image_tag large_image_path(@image) %>
     </p>
 
     <p>
@@ -10,8 +10,7 @@
     </p>
 
 
-    <%= link_to 'Edit', edit_image_path(@image) %> |
-    <%= link_to 'Back', images_path %>
+    <%= link_to 'Back', images_path, :class=>"btn btn-default" %>
 </div>
 
 

@@ -79,4 +79,15 @@ class ImagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+ def large
+    @image = Image.find(params[:id])
+    send_data(@image.data, :type =>"image/png", :filename => "#{@image.username}.jpg", :disposition => "inline")
+end
+
+ def small
+    @image = Image.find(params[:id])
+    send_data(@image.thumb_data, :type =>"image/png", :filename => "#{@image.username}_small.jpg", :disposition => "inline")
+end
+
 end

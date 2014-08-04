@@ -2,19 +2,17 @@
 
 <table class="table table-bordered">
   <tr>
-    <th>Source</th>
+    <th>Thumbnail</th>
     <th>Username</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @images.each do |image| %>
   <tr>
-    <td><img src="/small-<%=image.source%>"/></td>
+    <td><%= image_tag small_image_path(image) %></td>
     <td><%= image.username %></td>
     <td><%= link_to 'Show', image %></td>
-    <td><%= link_to 'Edit', edit_image_path(image) %></td>
     <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
@@ -22,4 +20,4 @@
 
 <br />
 
-<%= link_to 'New Image', new_image_path %>
+<%= link_to 'New Image', new_image_path , :class=>"btn btn-default" %>
