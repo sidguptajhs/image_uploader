@@ -29,7 +29,7 @@ gem 'jquery-rails'
 gem 'less-rails'
 gem 'therubyracer'
 gem 'bootstrap-sass'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 
 gem 'rails_12factor', group: :production
 # To use ActiveModel has_secure_password
