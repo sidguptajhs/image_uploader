@@ -11,6 +11,7 @@ class Image < ActiveRecord::Base
     source = Magick::Image.from_blob(image_data).first
     source.resize_to_fit!(320, 240)
     write_attribute(:thumb_data, source.to_blob)
+    write_attribute(:source, "nothing")
   end
 
 end
