@@ -1,4 +1,5 @@
 require 'base64'
+require 'rmagick'
 class Image < ActiveRecord::Base
   attr_accessible :source, :username, :data, :thumb_data
   before_save :save_image
