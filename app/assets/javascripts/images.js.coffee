@@ -3,8 +3,23 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 root = exports ? this
 root.sendImage = (name) ->
-  document.getElementById("image_source").value = document.getElementById(name).getAttribute("src")
-  alert("Done !!")
+  i = 0
+  loop
+    curImg = document.getElementById("button"+i)
+    curUpload = document.getElementById("upload"+i)
+    if curImg isnt null
+      curImg.setAttribute "class", ""
+      curUpload.setAttribute "class", "btn btn-default"
+      curUpload.setAttribute "value", "Select for Upload"
+    else
+      break
+    i++
+  currentImage = document.getElementById("button"+name)
+  currentImage.setAttribute "class", "btn btn-default"
+  upload = document.getElementById("upload"+name)
+  upload.setAttribute "class", "btn btn-success"
+  upload.setAttribute "value", "Set for Upload"
+  document.getElementById("image_source").value = currentImage.getAttribute("src")
   return
 startCamera = ->
   window.URL or (window.URL = window.webkitURL or window.msURL or window.oURL)
@@ -92,10 +107,11 @@ startCamera = ->
     img.setAttribute "width", "320px"
     img.setAttribute "width", "240px"
     upload.setAttribute "type", "button"
-    upload.setAttribute "value", "Upload"
+    upload.setAttribute "value", "Select for Upload"
+    upload.setAttribute "id", "upload" + count
     upload.setAttribute "class", "btn btn-default"
     upload.setAttribute "style", "margin-left: 20px;"
-    upload.setAttribute "onclick", "sendImage(\"" + "button" + count + "\");"
+    upload.setAttribute "onclick", "sendImage(\""  + count + "\");"
     $output.prepend div
     document.getElementById("div_button"+count).appendChild(img)
     document.getElementById("div_button"+count).appendChild(upload)
@@ -105,6 +121,15 @@ startCamera = ->
   $ initialize
   return
 )()
+
+root.submitForm = ->
+  name = document.getElementById("image_username")
+  img = document.getElementById("image_source")
+  if img.length is 0 or not name.value? or name.value.length is 0
+    alert "Please put in a name and an image"
+  else
+    document.forms["new_image"].submit()
+  return
 
 $(document).ready(startCamera)
 $(document).on('page:load', ready)
